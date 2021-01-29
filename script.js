@@ -1,48 +1,31 @@
 var addButton = document.getElementById('addQuantity');
 addButton.addEventListener('click', function () {
-    getPhoneInput("iphoneAmount", "addQuantity");
-    priceCalculator();
+    getInput("iphoneAmount", "addQuantity", "currentPhonePrice");
 })
 var removeButton = document.getElementById('removeQuantity');
 removeButton.addEventListener('click', function () {
-    getPhoneInput("iphoneAmount", "removeQuantity");
-    priceCalculator();
+    getInput("iphoneAmount", "removeQuantity", "currentPhonePrice");
 })
 var addCasingButton = document.getElementById('addCasing')
 addCasingButton.addEventListener('click', function () {
-    getCasingInput("casingAmount", "addCasing");
-    priceCalculator();
+    getInput("casingAmount", "addCasing", "currentCasingPrice");
 })
 var removeCasingButton = document.getElementById('removeCasing')
 removeCasingButton.addEventListener('click', function () {
-    getCasingInput("casingAmount", "removeCasing");
-    priceCalculator();
+    getInput("casingAmount", "removeCasing", "currentCasingPrice");
 })
 
-function getPhoneInput(id, buttonId) {
+function getInput(id, buttonId, priceId) {
     var currentNumber = document.getElementById(id).value;
     var amountNumber = parseInt(currentNumber);
     var totalAmount = 1;
-    if (buttonId == "removeQuantity" && amountNumber > 1) {
+    if ((buttonId == "removeQuantity"|| buttonId == "removeCasing") && amountNumber > 1) {
         totalAmount = amountNumber - 1;
     }
-    if (buttonId == "addQuantity") {
+    if (buttonId == "addQuantity" || buttonId == "addCasing") {
         totalAmount = amountNumber + 1;
     }
-    getPrice("currentPhonePrice", totalAmount);
-    document.getElementById(id).value = totalAmount;
-}
-function getCasingInput(id, buttonId) {
-    var currentNumber = document.getElementById(id).value;
-    var amountNumber = parseInt(currentNumber);
-    var totalAmount = 1;
-    if (buttonId == "removeCasing" && amountNumber > 1) {
-        totalAmount = amountNumber - 1;
-    }
-    if (buttonId == "addCasing") {
-        totalAmount = amountNumber + 1;
-    }
-    getPrice("currentCasingPrice", totalAmount);
+     getPrice(priceId, totalAmount);
     document.getElementById(id).value = totalAmount;
 }
 function getPrice(id, totalAmount) {
@@ -50,13 +33,12 @@ function getPrice(id, totalAmount) {
     if (id == "currentPhonePrice") {
         totalPrice = 1219 * totalAmount;
         document.getElementById(id).innerText = totalPrice;
-
     }
     if (id == "currentCasingPrice") {
         totalPrice = 59 * totalAmount;
         document.getElementById(id).innerText = totalPrice;
     }
-    return totalPrice;
+    priceCalculator();
 }
 function priceCalculator() {
     var phonePrice = parseInt(document.getElementById("currentPhonePrice").innerText);
