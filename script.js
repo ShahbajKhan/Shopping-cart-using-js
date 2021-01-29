@@ -32,12 +32,11 @@ function getPrice(id, totalAmount) {
     let totalPrice = 1219;
     if (id == "currentPhonePrice") {
         totalPrice = 1219 * totalAmount;
-        document.getElementById(id).innerText = totalPrice;
     }
     if (id == "currentCasingPrice") {
         totalPrice = 59 * totalAmount;
-        document.getElementById(id).innerText = totalPrice;
     }
+    document.getElementById(id).innerText = totalPrice;
     priceCalculator();
 }
 function priceCalculator() {
