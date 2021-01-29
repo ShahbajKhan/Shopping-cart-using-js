@@ -1,24 +1,24 @@
-var addButton = document.getElementById('addQuantity');
+const addButton = document.getElementById('addQuantity');
 addButton.addEventListener('click', function () {
     getInput("iphoneAmount", "addQuantity", "currentPhonePrice");
 })
-var removeButton = document.getElementById('removeQuantity');
+const removeButton = document.getElementById('removeQuantity');
 removeButton.addEventListener('click', function () {
     getInput("iphoneAmount", "removeQuantity", "currentPhonePrice");
 })
-var addCasingButton = document.getElementById('addCasing')
+const addCasingButton = document.getElementById('addCasing')
 addCasingButton.addEventListener('click', function () {
     getInput("casingAmount", "addCasing", "currentCasingPrice");
 })
-var removeCasingButton = document.getElementById('removeCasing')
+const removeCasingButton = document.getElementById('removeCasing')
 removeCasingButton.addEventListener('click', function () {
     getInput("casingAmount", "removeCasing", "currentCasingPrice");
 })
 
 function getInput(id, buttonId, priceId) {
-    var currentNumber = document.getElementById(id).value;
-    var amountNumber = parseInt(currentNumber);
-    var totalAmount = 1;
+    const currentNumber = document.getElementById(id).value;
+    const amountNumber = parseInt(currentNumber);
+    let totalAmount = 1;
     if ((buttonId == "removeQuantity"|| buttonId == "removeCasing") && amountNumber > 1) {
         totalAmount = amountNumber - 1;
     }
@@ -29,7 +29,7 @@ function getInput(id, buttonId, priceId) {
     document.getElementById(id).value = totalAmount;
 }
 function getPrice(id, totalAmount) {
-    var totalPrice = 1219;
+    let totalPrice = 1219;
     if (id == "currentPhonePrice") {
         totalPrice = 1219 * totalAmount;
         document.getElementById(id).innerText = totalPrice;
@@ -41,12 +41,12 @@ function getPrice(id, totalAmount) {
     priceCalculator();
 }
 function priceCalculator() {
-    var phonePrice = parseInt(document.getElementById("currentPhonePrice").innerText);
-    var casingPrice = parseInt(document.getElementById("currentCasingPrice").innerText);
-    var subtotal = phonePrice + casingPrice;
+    const phonePrice = parseInt(document.getElementById("currentPhonePrice").innerText);
+    const casingPrice = parseInt(document.getElementById("currentCasingPrice").innerText);
+    const subtotal = phonePrice + casingPrice;
     document.getElementById("subtotal").innerText = subtotal;
-    var tax = parseFloat((subtotal * 0.01).toFixed(2));
+    const tax = parseFloat((subtotal * 0.01).toFixed(2));
     document.getElementById("tax").innerText = tax;
-    var total = subtotal + tax;
+    const total = subtotal + tax;
     document.getElementById("total").innerText = total;
 }
